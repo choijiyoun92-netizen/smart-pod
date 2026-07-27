@@ -18,54 +18,25 @@
         </button>
       </div>
 
-      <div class="command-actions">
-        <button class="outline-button inquiry-open" type="button">
-          <span class="question-icon" aria-hidden="true">?</span>
-          문의
+      <div class="top-design-wrap">
+        <button class="top-design-trigger" type="button" aria-expanded="false">
+          <span class="top-design-copy">
+            <small>상단 디자인</small>
+            <strong id="top-design-value">기본 방패형</strong>
+          </span>
+          <span class="top-design-swatch swatch-shield" id="top-design-swatch" aria-hidden="true"></span>
+          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m7 10 5 5 5-5"></path>
+          </svg>
         </button>
 
-        <div class="column-control" aria-label="단 설정">
-          <button type="button" data-column="1">1단</button>
-          <button class="is-active" type="button" data-column="2">2단</button>
-        </div>
-
-        <div class="download-wrap">
-          <button class="download-trigger" type="button" aria-expanded="false">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v2h14v-2"></path>
-            </svg>
-            다운로드
-            <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m7 10 5 5 5-5"></path>
-            </svg>
-          </button>
-
-          <div class="download-menu" role="menu">
-            <button type="button" role="menuitem" data-format="HWP">
-              <span class="file-chip hwp">H</span>
-              <span><strong>HWP</strong><small>한글 문서</small></span>
-            </button>
-            <button type="button" role="menuitem" data-format="PDF">
-              <span class="file-chip pdf">P</span>
-              <span><strong>PDF</strong><small>인쇄·공유용</small></span>
-            </button>
-            <button type="button" role="menuitem" data-format="DOC">
-              <span class="file-chip doc">D</span>
-              <span><strong>DOC</strong><small>Word 문서</small></span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <main class="workspace">
-      <aside class="settings-panel">
-        <section class="option-card">
-          <div class="section-heading">
-            <h2>상단 디자인 선택</h2>
+        <div class="top-design-menu" role="dialog" aria-label="상단 디자인 선택">
+          <div class="top-design-menu-header">
+            <strong>상단 디자인 선택</strong>
+            <span>문제지와 해설지에 공통 적용</span>
           </div>
 
-          <div class="template-list" role="radiogroup" aria-label="상단 디자인">
+          <div class="top-template-grid" role="radiogroup" aria-label="상단 디자인">
             <button class="template-card is-selected" type="button" role="radio" aria-checked="true"
               data-template="shield" data-name="기본 방패형">
               <span class="radio-dot"></span>
@@ -116,11 +87,23 @@
               </span>
             </button>
           </div>
-        </section>
+        </div>
+      </div>
 
-        <section class="option-card answer-options" hidden>
-          <div class="section-heading">
-            <h2>정답 및 해설 출력 선택</h2>
+      <div class="solution-config-wrap">
+        <button class="solution-config-trigger" type="button" aria-expanded="false">
+          <span class="solution-config-copy">
+            <small>해설지 구성</small>
+            <strong id="solution-config-value">정답 · 해설</strong>
+          </span>
+          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m7 10 5 5 5-5"></path>
+          </svg>
+        </button>
+
+        <div class="solution-config-menu" role="dialog" aria-label="해설지 구성">
+          <div class="solution-config-menu-header">
+            <strong>해설지 구성</strong>
           </div>
 
           <div class="check-option-grid">
@@ -136,8 +119,52 @@
               <strong>해설</strong>
             </label>
           </div>
-        </section>
-      </aside>
+        </div>
+      </div>
+
+      <div class="command-actions">
+
+
+        <div class="column-control" aria-label="단 설정">
+          <button type="button" data-column="1">1단</button>
+          <button class="is-active" type="button" data-column="2">2단</button>
+        </div>
+
+        <div class="download-wrap">
+          <button class="download-trigger" type="button" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v2h14v-2"></path>
+            </svg>
+            다운로드
+            <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m7 10 5 5 5-5"></path>
+            </svg>
+          </button>
+
+          <div class="download-menu" role="menu">
+            <button type="button" role="menuitem" data-format="HWP">
+              <span class="file-chip hwp">H</span>
+              <span><strong>HWP</strong><small>한글 문서</small></span>
+            </button>
+            <button type="button" role="menuitem" data-format="PDF">
+              <span class="file-chip pdf">P</span>
+              <span><strong>PDF</strong><small>인쇄·공유용</small></span>
+            </button>
+            <button type="button" role="menuitem" data-format="DOC">
+              <span class="file-chip doc">D</span>
+              <span><strong>DOC</strong><small>Word 문서</small></span>
+            </button>
+          </div>
+        </div>
+
+          <button class="outline-button inquiry-open" type="button">
+          <span class="question-icon" aria-hidden="true">?</span>
+          문의
+        </button>
+      </div>
+    </header>
+
+    <main class="workspace">
 
       <section class="viewer-shell" aria-label="POD 미리보기">
         <div class="viewer-toolbar">
@@ -453,8 +480,8 @@
 
         <label class="form-row textarea-row">
           <span>내용</span>
-          <textarea rows="7" maxlength="1000"
-            placeholder="오류가 발생한 문항 또는 출력 상황을 구체적으로 입력해 주세요." required></textarea>
+          <textarea id="inquiry-content" rows="7" maxlength="1000"
+            placeholder="문의 내용을 구체적으로 입력해 주세요." required></textarea>
         </label>
 
         <footer class="modal-footer">

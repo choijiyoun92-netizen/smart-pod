@@ -12,7 +12,13 @@
   const paperFrame = document.querySelector("#paper-frame");
   const problemSheet = document.querySelector("#problem-sheet");
   const solutionSheet = document.querySelector("#solution-sheet");
-  const answerOptions = document.querySelector(".answer-options");
+  const topDesignWrap = document.querySelector(".top-design-wrap");
+  const topDesignTrigger = document.querySelector(".top-design-trigger");
+  const topDesignValue = document.querySelector("#top-design-value");
+  const topDesignSwatch = document.querySelector("#top-design-swatch");
+  const solutionConfigWrap = document.querySelector(".solution-config-wrap");
+  const solutionConfigTrigger = document.querySelector(".solution-config-trigger");
+  const solutionConfigValue = document.querySelector("#solution-config-value");
   const viewerTitle = document.querySelector("#viewer-title");
   const pageTotal = document.querySelector("#page-total");
   const templateStatus = document.querySelector("#template-status");
@@ -32,6 +38,7 @@
   const questionNumber = document.querySelector("#question-number");
   const questionKey = document.querySelector("#question-key");
   const printErrorType = document.querySelector("#print-error-type");
+  const inquiryContent = document.querySelector("#inquiry-content");
   const toast = document.querySelector("#toast");
 
   const templateClasses = [
@@ -83,7 +90,6 @@
 
     problemSheet.hidden = !isProblem;
     solutionSheet.hidden = isProblem;
-    answerOptions.hidden = isProblem;
 
     pageTotal.textContent = isProblem ? "4" : "2";
     sheetPageNumber.textContent = isProblem ? "1/4" : "1/2";
@@ -109,6 +115,10 @@
     });
 
     templateStatus.textContent = name;
+    topDesignValue.textContent = name;
+    topDesignSwatch.className = `top-design-swatch swatch-${template}`;
+    topDesignWrap.classList.remove("is-open");
+    topDesignTrigger.setAttribute("aria-expanded", "false");
     showToast(`상단 디자인이 ‘${name}’으로 변경되었습니다.`);
   }
 
@@ -122,6 +132,14 @@
 
     solutionSheet.classList.toggle("hide-answer", !answerChecked);
     solutionSheet.classList.toggle("hide-explanation", !explanationChecked);
+
+    if (answerChecked && explanationChecked) {
+      solutionConfigValue.textContent = "정답 · 해설";
+    } else if (answerChecked) {
+      solutionConfigValue.textContent = "정답";
+    } else {
+      solutionConfigValue.textContent = "해설";
+    }
   }
 
   tabs.forEach((tab) => {
@@ -149,10 +167,43 @@
     });
   });
 
+  topDesignTrigger.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const open = topDesignWrap.classList.toggle("is-open");
+    topDesignTrigger.setAttribute("aria-expanded", String(open));
+
+    if (open) {
+      solutionConfigWrap.classList.remove("is-open");
+      solutionConfigTrigger.setAttribute("aria-expanded", "false");
+      downloadWrap.classList.remove("is-open");
+      downloadTrigger.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  solutionConfigTrigger.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const open = solutionConfigWrap.classList.toggle("is-open");
+    solutionConfigTrigger.setAttribute("aria-expanded", String(open));
+
+    if (open) {
+      topDesignWrap.classList.remove("is-open");
+      topDesignTrigger.setAttribute("aria-expanded", "false");
+      downloadWrap.classList.remove("is-open");
+      downloadTrigger.setAttribute("aria-expanded", "false");
+    }
+  });
+
   downloadTrigger.addEventListener("click", (event) => {
     event.stopPropagation();
     const open = downloadWrap.classList.toggle("is-open");
     downloadTrigger.setAttribute("aria-expanded", String(open));
+
+    if (open) {
+      topDesignWrap.classList.remove("is-open");
+      topDesignTrigger.setAttribute("aria-expanded", "false");
+      solutionConfigWrap.classList.remove("is-open");
+      solutionConfigTrigger.setAttribute("aria-expanded", "false");
+    }
   });
 
   document.querySelectorAll("[data-format]").forEach((button) => {
@@ -168,6 +219,16 @@
     if (!downloadWrap.contains(event.target)) {
       downloadWrap.classList.remove("is-open");
       downloadTrigger.setAttribute("aria-expanded", "false");
+    }
+
+    if (!topDesignWrap.contains(event.target)) {
+      topDesignWrap.classList.remove("is-open");
+      topDesignTrigger.setAttribute("aria-expanded", "false");
+    }
+
+    if (!solutionConfigWrap.contains(event.target)) {
+      solutionConfigWrap.classList.remove("is-open");
+      solutionConfigTrigger.setAttribute("aria-expanded", "false");
     }
   });
 
@@ -215,6 +276,13 @@
 
     if (isQuestionInquiry) {
       updateQuestionKey();
+      inquiryContent.placeholder =
+        "선택한 문항에서 확인한 오류 내용을 구체적으로 입력해 주세요.";
+    } else if (isPrintInquiry) {
+      inquiryContent.placeholder =
+        "오류가 발생한 문항번호(예: 3번)를 반드시 기입하고, 출력 상황을 구체적으로 입력해 주세요.";
+    } else {
+      inquiryContent.placeholder = "문의 내용을 구체적으로 입력해 주세요.";
     }
 
     if (!isPrintInquiry) {
@@ -295,6 +363,10 @@
 
     downloadWrap.classList.remove("is-open");
     downloadTrigger.setAttribute("aria-expanded", "false");
+    topDesignWrap.classList.remove("is-open");
+    topDesignTrigger.setAttribute("aria-expanded", "false");
+    solutionConfigWrap.classList.remove("is-open");
+    solutionConfigTrigger.setAttribute("aria-expanded", "false");
   });
 
   switchTab("problem");
