@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>POD 문제지·해설지 목업</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="pod-app">
+    <header class="pod-command-bar">
+      <div class="tab-group" role="tablist" aria-label="자료 유형">
+        <button class="main-tab is-active" type="button" role="tab" aria-selected="true" data-tab="problem">
+          문제지
+        </button>
+        <button class="main-tab" type="button" role="tab" aria-selected="false" data-tab="solution">
+          해설지
+        </button>
+      </div>
+
+      <div class="command-actions">
+        <button class="outline-button inquiry-open" type="button">
+          <span class="question-icon" aria-hidden="true">?</span>
+          문의
+        </button>
+
+        <div class="column-control" aria-label="단 설정">
+          <button type="button" data-column="1">1단</button>
+          <button class="is-active" type="button" data-column="2">2단</button>
+        </div>
+
+        <div class="download-wrap">
+          <button class="download-trigger" type="button" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v2h14v-2"></path>
+            </svg>
+            다운로드
+            <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m7 10 5 5 5-5"></path>
+            </svg>
+          </button>
+
+          <div class="download-menu" role="menu">
+            <button type="button" role="menuitem" data-format="HWP">
+              <span class="file-chip hwp">H</span>
+              <span><strong>HWP</strong><small>한글 문서</small></span>
+            </button>
+            <button type="button" role="menuitem" data-format="PDF">
+              <span class="file-chip pdf">P</span>
+              <span><strong>PDF</strong><small>인쇄·공유용</small></span>
+            </button>
+            <button type="button" role="menuitem" data-format="DOC">
+              <span class="file-chip doc">D</span>
+              <span><strong>DOC</strong><small>Word 문서</small></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="settings-panel">
+        <section class="option-card">
+          <div class="section-heading">
+            <h2>상단 디자인 선택</h2>
+          </div>
+
+          <div class="template-list" role="radiogroup" aria-label="상단 디자인">
+            <button class="template-card is-selected" type="button" role="radio" aria-checked="true"
+              data-template="shield" data-name="기본 방패형">
+              <span class="radio-dot"></span>
+              <span class="mini-header mini-shield">
+                <span class="mini-symbol">수학<small>3학년</small></span>
+                <span class="mini-title">자료 이름이 들어갑니다.</span>
+                <span class="mini-student">학교<br>___ 반 ___ 번<br>이름:</span>
+              </span>
+            </button>
+
+            <button class="template-card" type="button" role="radio" aria-checked="false"
+              data-template="orange" data-name="오렌지 활동형">
+              <span class="radio-dot"></span>
+              <span class="mini-header mini-orange">
+                <span class="mini-symbol">✎<small>수학 3학년</small></span>
+                <span class="mini-title">자료 이름이 들어갑니다.</span>
+                <span class="mini-student">학교<br>___ 반 ___ 번<br>이름:</span>
+              </span>
+            </button>
+
+            <button class="template-card" type="button" role="radio" aria-checked="false"
+              data-template="green" data-name="그린 탐구형">
+              <span class="radio-dot"></span>
+              <span class="mini-header mini-green">
+                <span class="mini-symbol">◎<small>수학 3학년</small></span>
+                <span class="mini-title">자료 이름이 들어갑니다.</span>
+                <span class="mini-student">학교<br>___ 반 ___ 번<br>이름:</span>
+              </span>
+            </button>
+
+            <button class="template-card" type="button" role="radio" aria-checked="false"
+              data-template="purple" data-name="퍼플 실험형">
+              <span class="radio-dot"></span>
+              <span class="mini-header mini-purple">
+                <span class="mini-symbol">△<small>수학 3학년</small></span>
+                <span class="mini-title">자료 이름이 들어갑니다.</span>
+                <span class="mini-student">학교<br>___ 반 ___ 번<br>이름:</span>
+              </span>
+            </button>
+
+            <button class="template-card" type="button" role="radio" aria-checked="false"
+              data-template="cyan" data-name="블루 리본형">
+              <span class="radio-dot"></span>
+              <span class="mini-header mini-cyan">
+                <span class="mini-symbol">◇<small>수학 3학년</small></span>
+                <span class="mini-title">자료 이름이 들어갑니다.</span>
+                <span class="mini-student">학교<br>___ 반 ___ 번<br>이름:</span>
+              </span>
+            </button>
+          </div>
+        </section>
+
+        <section class="option-card answer-options" hidden>
+          <div class="section-heading">
+            <h2>정답 및 해설 출력 선택</h2>
+          </div>
+
+          <div class="check-option-grid">
+            <label class="check-card">
+              <input type="checkbox" name="solution-content" value="answer" checked />
+              <span class="custom-check" aria-hidden="true"></span>
+              <strong>정답</strong>
+            </label>
+
+            <label class="check-card">
+              <input type="checkbox" name="solution-content" value="explanation" checked />
+              <span class="custom-check" aria-hidden="true"></span>
+              <strong>해설</strong>
+            </label>
+          </div>
+        </section>
+      </aside>
+
+      <section class="viewer-shell" aria-label="POD 미리보기">
+        <div class="viewer-toolbar">
+          <div class="viewer-file">
+            <button class="toolbar-icon" type="button" aria-label="메뉴">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16"></path>
+              </svg>
+            </button>
+            <span id="viewer-title">문제지_수학_3학년_2단</span>
+            <span class="template-status" id="template-status">기본 방패형</span>
+          </div>
+
+          <div class="viewer-controls">
+            <span class="page-count"><strong>1</strong> / <span id="page-total">4</span></span>
+            <span class="toolbar-divider"></span>
+            <button class="toolbar-icon zoom-out" type="button" aria-label="축소">−</button>
+            <output class="zoom-output" id="zoom-output">100%</output>
+            <button class="toolbar-icon zoom-in" type="button" aria-label="확대">＋</button>
+            <span class="toolbar-divider"></span>
+            <button class="toolbar-icon fit-preview" type="button" aria-label="화면 맞춤">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 3H3v5m13-5h5v5M8 21H3v-5m13 5h5v-5M8 8h8v8H8z"></path>
+              </svg>
+            </button>
+            <button class="toolbar-icon rotate-preview" type="button" aria-label="회전">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 11a8 8 0 1 1-2.3-5.7L20 7M20 3v4h-4"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="viewer-stage" id="viewer-stage">
+          <article class="paper-frame template-shield columns-2" id="paper-frame">
+            <header class="sheet-header">
+              <div class="header-symbol">
+                <span class="symbol-icon">수학</span>
+                <span class="symbol-grade">3학년</span>
+              </div>
+
+              <div class="header-title" id="sheet-title">
+                제곱근의 덧셈과 뺄셈_역량키우기 외 9개
+              </div>
+
+              <div class="header-student-box">
+                <strong>학교</strong>
+                <span>＿＿ 반　＿＿ 번</span>
+                <span>이름:</span>
+              </div>
+            </header>
+
+            <section class="sheet-body problem-sheet" id="problem-sheet">
+              <div class="sheet-column">
+                <article class="question-block feature-question" data-question-id="P01">
+                  <div class="question-accent orange"></div>
+                  <div class="feature-layout">
+                    <div class="feature-copy">
+                      <h3>√3 + √5를 √(3 + 5)로 계산할 수 없는 이유</h3>
+                      <p>
+                        오른쪽 그림은 한 변의 길이가 √3 + √5인 정사각형 안에
+                        한 변의 길이가 각각 √3, √5인 두 정사각형을 그린 것이다.
+                        이 그림을 이용하여 √3 + √5를 √(3 + 5)로 계산할 수 없는
+                        이유를 설명해 보자.
+                      </p>
+                    </div>
+
+                    <div class="square-diagram" aria-label="넓이 3과 넓이 5인 정사각형을 포함한 도형">
+                      <span class="reason-badge">?</span>
+                      <span class="reason-text">추론</span>
+                      <div class="area area-top"></div>
+                      <div class="area area-three">넓이: 3</div>
+                      <div class="area area-five">넓이: 5</div>
+                      <span class="measure measure-left">√3</span>
+                      <span class="measure measure-right">√5</span>
+                      <span class="measure measure-total">√3 + √5</span>
+                    </div>
+                  </div>
+
+                  <div class="answer-area" aria-label="학생 서술 답안 영역"></div>
+
+                  <div class="competency-row">
+                    <strong>역량<br>수학<br>커뮤니케이션</strong>
+                    <span>타당한 근거에 따라 자신의 생각을 논리적으로 설명한다.</span>
+                  </div>
+
+                  <aside class="hint-box">
+                    <span class="label">힌트</span>
+                    한 변의 길이가 각각 √3 + √5, √3, √5인 정사각형의 넓이를
+                    이용하여 √3 + √5와 √(3 + 5)를 비교할 수 있다.
+                  </aside>
+                </article>
+              </div>
+
+              <div class="sheet-column">
+                <article class="question-block calculation-set" data-question-id="P02">
+                  <div class="question-accent purple"></div>
+                  <span class="section-label purple">문제</span>
+                  <h3>다음을 계산하시오.</h3>
+
+                  <ol class="calculation-list">
+                    <li>
+                      <span class="math">√21 ÷ √3 + √14 × √2</span>
+                      <span class="answer-line"></span>
+                    </li>
+                    <li>
+                      <span class="math">
+                        √15 × <span class="fraction"><span>1</span><span>√3</span></span>
+                        − √10 ÷ <span class="fraction"><span>1</span><span>√2</span></span>
+                      </span>
+                      <span class="answer-line"></span>
+                    </li>
+                    <li>
+                      <span class="math">√3(√5 + √12) + √60</span>
+                      <span class="answer-line"></span>
+                    </li>
+                    <li>
+                      <span class="math">5√5 + (2√42 − √35) ÷ √7</span>
+                      <span class="answer-line"></span>
+                    </li>
+                  </ol>
+
+                  <aside class="hint-box compact">
+                    <span class="label">힌트</span>
+                    <ul>
+                      <li>근호를 포함한 식에서는 곱셈과 나눗셈을 먼저 계산한다.</li>
+                      <li>곱하거나 나눌 수 있는 제곱근끼리 먼저 정리한다.</li>
+                    </ul>
+                  </aside>
+                </article>
+              </div>
+            </section>
+
+            <section class="sheet-body solution-sheet" id="solution-sheet" hidden>
+              <div class="sheet-column">
+                <article class="solution-block" data-question-id="S01">
+                  <span class="section-label">해설</span>
+                  <p>
+                    주어진 그림에서 한 변의 길이가 √3 + √5인 정사각형의 넓이는
+                    3 + 5 = 8보다 큼을 알 수 있다. 이때 넓이가 8인 정사각형의 한 변의
+                    길이는 √8이고, 정사각형은 넓이가 클수록 한 변의 길이도 크므로
+                    √3 + √5 &gt; √8이다.
+                  </p>
+                  <p>
+                    따라서 √3 + √5 ≠ √(3 + 5)이므로
+                    √3 + √5를 √(3 + 5)로 계산할 수 없다.
+                  </p>
+                </article>
+
+                <article class="solution-block" data-question-id="S02">
+                  <span class="section-label">해설</span>
+                  <ol class="solution-list">
+                    <li>
+                      <div class="solution-expression">
+                        √21 ÷ √3 + √14 × √2
+                        = <span class="fraction"><span>√21</span><span>√3</span></span>
+                        + 2√7 = √7 + 2√7 = 3√7
+                      </div>
+                    </li>
+                    <li>
+                      <div class="solution-expression">
+                        √15 × <span class="fraction"><span>1</span><span>√3</span></span>
+                        − √10 ÷ <span class="fraction"><span>1</span><span>√2</span></span>
+                        = √5 − √5 = 0
+                      </div>
+                    </li>
+                    <li>
+                      <div class="solution-expression">
+                        √3(√5 + √12) + √60
+                        = √15 + 6 + 2√15
+                        = 6 + 3√15
+                      </div>
+                    </li>
+                    <li>
+                      <div class="solution-expression">
+                        5√5 + (2√42 − √35) ÷ √7
+                        = 5√5 + 2√6 − √5
+                        = 4√5 + 2√6
+                      </div>
+                    </li>
+                  </ol>
+
+                  <p class="answer-summary answer-part">
+                    <strong>정답:</strong> 3√7, 0, 6 + 3√15, 4√5 + 2√6
+                  </p>
+                </article>
+              </div>
+
+              <div class="sheet-column">
+                <article class="solution-block" data-question-id="S03">
+                  <span class="section-label">해설</span>
+                  <p class="explanation-part">
+                    지진 해일이 수심 4000 m인 지점을 지날 때의 속력은
+                    √(9.8 × 4000) m이고, 수심 160 m인 지점을 지날 때의 속력은
+                    √(9.8 × 160) m이다.
+                  </p>
+                  <div class="solution-expression explanation-part">
+                    √(9.8 × 4000) − √(9.8 × 160)<br>
+                    = √(98 × 400) − √(98 × 16)<br>
+                    = 140√2 − 28√2<br>
+                    = 112√2
+                  </div>
+                  <p class="answer-summary answer-part">
+                    <strong>정답:</strong> 112√2 m
+                  </p>
+                </article>
+
+                <article class="solution-block" data-question-id="S04">
+                  <span class="section-label">해설</span>
+
+                  <ol class="solution-list explanation-part">
+                    <li>√63 − √28 = 3√7 − 2√7 = √7</li>
+                    <li>
+                      <span class="fraction"><span>√24</span><span>3</span></span>
+                      + <span class="fraction"><span>√2</span><span>√27</span></span>
+                      = <span class="fraction"><span>2√6</span><span>3</span></span>
+                      + <span class="fraction"><span>√6</span><span>9</span></span>
+                      = <span class="fraction"><span>7√6</span><span>9</span></span>
+                    </li>
+                    <li>√3 − 5√6 − √12 + 2√54 = −√3 + √6</li>
+                    <li>
+                      <span class="fraction"><span>√18</span><span>6</span></span>
+                      + <span class="fraction"><span>5</span><span>√75</span></span>
+                      − <span class="fraction"><span>4</span><span>√3</span></span>
+                      = −<span class="fraction"><span>√3</span><span>6</span></span>
+                    </li>
+                  </ol>
+
+                  <p class="answer-summary answer-part">
+                    <strong>정답:</strong> √7,
+                    <span class="fraction"><span>7√6</span><span>9</span></span>,
+                    −√3 + √6,
+                    −<span class="fraction"><span>√3</span><span>6</span></span>
+                  </p>
+                </article>
+              </div>
+            </section>
+
+            <footer class="sheet-page-number" id="sheet-page-number">1/4</footer>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="inquiry-modal" hidden>
+    <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header class="modal-header">
+        <div>
+          <h2 id="modal-title">문항오류 문의하기</h2>
+          <p>비바샘 회원정보의 이메일로 답변이 발송됩니다.</p>
+        </div>
+        <button class="modal-close" type="button" aria-label="닫기">×</button>
+      </header>
+
+      <form id="inquiry-form">
+        <fieldset class="inquiry-types">
+          <legend class="sr-only">문의 유형</legend>
+          <label><input type="radio" name="inquiryType" value="문항 오류" checked /><span>문항 오류</span></label>
+          <label><input type="radio" name="inquiryType" value="답안 및 해설 오류" /><span>답안 및 해설 오류</span></label>
+          <label><input type="radio" name="inquiryType" value="시험지 출력 기능 오류" /><span>시험지 출력 기능 오류</span></label>
+          <label><input type="radio" name="inquiryType" value="기타" /><span>기타</span></label>
+        </fieldset>
+
+        <section class="conditional-inquiry-section" id="question-detail-section">
+          <div class="conditional-section-title">
+            <strong>문의 문항 선택</strong>
+            <span>선택한 문항의 key값이 자동으로 조회됩니다.</span>
+          </div>
+
+          <div class="conditional-field-grid">
+            <label class="conditional-field">
+              <span>문항번호</span>
+              <select id="question-number" required>
+                <option value="1">1번</option>
+                <option value="2">2번</option>
+                <option value="3">3번</option>
+                <option value="4">4번</option>
+              </select>
+            </label>
+
+            <label class="conditional-field">
+              <span>문항 key</span>
+              <div class="readonly-field-wrap">
+                <input id="question-key" type="text" value="MATH-G3-ROOT-001" readonly />
+                <span class="admin-badge">관리자 확인용</span>
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <section class="conditional-inquiry-section" id="print-detail-section" hidden>
+          <div class="conditional-section-title">
+            <strong>출력 오류 기능 선택</strong>
+            <span>오류가 발생한 기능을 선택해 주세요.</span>
+          </div>
+
+          <label class="conditional-field single">
+            <span>기능 구분</span>
+            <select id="print-error-type">
+              <option value="">선택해 주세요.</option>
+              <option value="상단 디자인 선택 오류">상단 디자인 선택 오류</option>
+              <option value="1단/2단 출력 오류">1단/2단 출력 오류</option>
+              <option value="다운로드 오류">다운로드 오류</option>
+            </select>
+          </label>
+        </section>
+
+        <label class="form-row">
+          <span>제목</span>
+          <input id="inquiry-title" type="text" maxlength="80" placeholder="제목을 입력해 주세요." required />
+        </label>
+
+        <label class="form-row textarea-row">
+          <span>내용</span>
+          <textarea rows="7" maxlength="1000"
+            placeholder="오류가 발생한 문항 또는 출력 상황을 구체적으로 입력해 주세요." required></textarea>
+        </label>
+
+        <footer class="modal-footer">
+          <p>※ 비바샘 회원정보의 이메일로 답변이 발송됩니다.</p>
+          <button class="primary-button" type="submit">문의하기</button>
+        </footer>
+      </form>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
