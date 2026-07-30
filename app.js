@@ -2,8 +2,6 @@
   const state = {
     tab: "problem",
     column: 2,
-    template: "shield",
-    templateName: "기본 방패형",
     zoom: 100,
     rotated: false,
   };
@@ -12,16 +10,11 @@
   const paperFrame = document.querySelector("#paper-frame");
   const problemSheet = document.querySelector("#problem-sheet");
   const solutionSheet = document.querySelector("#solution-sheet");
-  const topDesignWrap = document.querySelector(".top-design-wrap");
-  const topDesignTrigger = document.querySelector(".top-design-trigger");
-  const topDesignValue = document.querySelector("#top-design-value");
-  const topDesignSwatch = document.querySelector("#top-design-swatch");
   const solutionConfigWrap = document.querySelector(".solution-config-wrap");
   const solutionConfigTrigger = document.querySelector(".solution-config-trigger");
   const solutionConfigValue = document.querySelector("#solution-config-value");
   const viewerTitle = document.querySelector("#viewer-title");
   const pageTotal = document.querySelector("#page-total");
-  const templateStatus = document.querySelector("#template-status");
   const sheetTitle = document.querySelector("#sheet-title");
   const sheetPageNumber = document.querySelector("#sheet-page-number");
   const zoomOutput = document.querySelector("#zoom-output");
@@ -40,14 +33,6 @@
   const printErrorType = document.querySelector("#print-error-type");
   const inquiryContent = document.querySelector("#inquiry-content");
   const toast = document.querySelector("#toast");
-
-  const templateClasses = [
-    "template-shield",
-    "template-orange",
-    "template-green",
-    "template-purple",
-    "template-cyan",
-  ];
 
   const questionKeyMap = {
     "1": "MATH-G3-ROOT-001",
@@ -101,27 +86,6 @@
     viewerStage.scrollTo({ top: 0, left: 0 });
   }
 
-  function applyTemplate(template, name) {
-    state.template = template;
-    state.templateName = name;
-
-    paperFrame.classList.remove(...templateClasses);
-    paperFrame.classList.add(`template-${template}`);
-
-    document.querySelectorAll(".template-card").forEach((card) => {
-      const selected = card.dataset.template === template;
-      card.classList.toggle("is-selected", selected);
-      card.setAttribute("aria-checked", String(selected));
-    });
-
-    templateStatus.textContent = name;
-    topDesignValue.textContent = name;
-    topDesignSwatch.className = `top-design-swatch swatch-${template}`;
-    topDesignWrap.classList.remove("is-open");
-    topDesignTrigger.setAttribute("aria-expanded", "false");
-    showToast(`상단 디자인이 ‘${name}’으로 변경되었습니다.`);
-  }
-
   function updateSolutionVisibility() {
     const answerChecked = document.querySelector(
       'input[name="solution-content"][value="answer"]'
@@ -161,33 +125,12 @@
     });
   });
 
-  document.querySelectorAll(".template-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      applyTemplate(card.dataset.template, card.dataset.name);
-    });
-  });
-
-  topDesignTrigger.addEventListener("click", (event) => {
-    event.stopPropagation();
-    const open = topDesignWrap.classList.toggle("is-open");
-    topDesignTrigger.setAttribute("aria-expanded", String(open));
-
-    if (open) {
-      solutionConfigWrap.classList.remove("is-open");
-      solutionConfigTrigger.setAttribute("aria-expanded", "false");
-      downloadWrap.classList.remove("is-open");
-      downloadTrigger.setAttribute("aria-expanded", "false");
-    }
-  });
-
   solutionConfigTrigger.addEventListener("click", (event) => {
     event.stopPropagation();
     const open = solutionConfigWrap.classList.toggle("is-open");
     solutionConfigTrigger.setAttribute("aria-expanded", String(open));
 
     if (open) {
-      topDesignWrap.classList.remove("is-open");
-      topDesignTrigger.setAttribute("aria-expanded", "false");
       downloadWrap.classList.remove("is-open");
       downloadTrigger.setAttribute("aria-expanded", "false");
     }
@@ -199,8 +142,6 @@
     downloadTrigger.setAttribute("aria-expanded", String(open));
 
     if (open) {
-      topDesignWrap.classList.remove("is-open");
-      topDesignTrigger.setAttribute("aria-expanded", "false");
       solutionConfigWrap.classList.remove("is-open");
       solutionConfigTrigger.setAttribute("aria-expanded", "false");
     }
@@ -219,11 +160,6 @@
     if (!downloadWrap.contains(event.target)) {
       downloadWrap.classList.remove("is-open");
       downloadTrigger.setAttribute("aria-expanded", "false");
-    }
-
-    if (!topDesignWrap.contains(event.target)) {
-      topDesignWrap.classList.remove("is-open");
-      topDesignTrigger.setAttribute("aria-expanded", "false");
     }
 
     if (!solutionConfigWrap.contains(event.target)) {
@@ -342,7 +278,9 @@
 
   document.querySelectorAll('input[name="solution-content"]').forEach((checkbox) => {
     checkbox.addEventListener("change", () => {
-      const checked = document.querySelectorAll('input[name="solution-content"]:checked');
+      const checked = document.querySelectorAll(
+        'input[name="solution-content"]:checked'
+      );
 
       if (checked.length === 0) {
         checkbox.checked = true;
@@ -363,14 +301,11 @@
 
     downloadWrap.classList.remove("is-open");
     downloadTrigger.setAttribute("aria-expanded", "false");
-    topDesignWrap.classList.remove("is-open");
-    topDesignTrigger.setAttribute("aria-expanded", "false");
     solutionConfigWrap.classList.remove("is-open");
     solutionConfigTrigger.setAttribute("aria-expanded", "false");
   });
 
   switchTab("problem");
-  applyTemplate("shield", "기본 방패형");
   applyTransform();
   updateSolutionVisibility();
   updateQuestionKey();

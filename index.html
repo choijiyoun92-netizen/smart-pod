@@ -18,79 +18,8 @@
         </button>
       </div>
 
-      <div class="top-design-wrap">
-        <button class="top-design-trigger" type="button" aria-expanded="false">
-          <span class="top-design-copy">
-            <small>상단 디자인</small>
-            <strong id="top-design-value">기본 방패형</strong>
-          </span>
-          <span class="top-design-swatch swatch-shield" id="top-design-swatch" aria-hidden="true"></span>
-          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="m7 10 5 5 5-5"></path>
-          </svg>
-        </button>
-
-        <div class="top-design-menu" role="dialog" aria-label="상단 디자인 선택">
-          <div class="top-design-menu-header">
-            <strong>상단 디자인 선택</strong>
-            <span>문제지와 해설지에 공통 적용</span>
-          </div>
-
-          <div class="top-template-grid" role="radiogroup" aria-label="상단 디자인">
-            <button class="template-card is-selected" type="button" role="radio" aria-checked="true"
-              data-template="shield" data-name="기본 방패형">
-              <span class="radio-dot"></span>
-              <span class="mini-header mini-shield">
-                <span class="mini-symbol">수학<small>3학년</small></span>
-                <span class="mini-title">자료 이름이 들어갑니다.</span>
-                <span class="mini-student">학교<br>___ 반 ___ 번<br>이름:</span>
-              </span>
-            </button>
-
-            <button class="template-card" type="button" role="radio" aria-checked="false"
-              data-template="orange" data-name="오렌지 활동형">
-              <span class="radio-dot"></span>
-              <span class="mini-header mini-orange">
-                <span class="mini-symbol">✎<small>수학 3학년</small></span>
-                <span class="mini-title">자료 이름이 들어갑니다.</span>
-                <span class="mini-student">학교<br>___ 반 ___ 번<br>이름:</span>
-              </span>
-            </button>
-
-            <button class="template-card" type="button" role="radio" aria-checked="false"
-              data-template="green" data-name="그린 탐구형">
-              <span class="radio-dot"></span>
-              <span class="mini-header mini-green">
-                <span class="mini-symbol">◎<small>수학 3학년</small></span>
-                <span class="mini-title">자료 이름이 들어갑니다.</span>
-                <span class="mini-student">학교<br>___ 반 ___ 번<br>이름:</span>
-              </span>
-            </button>
-
-            <button class="template-card" type="button" role="radio" aria-checked="false"
-              data-template="purple" data-name="퍼플 실험형">
-              <span class="radio-dot"></span>
-              <span class="mini-header mini-purple">
-                <span class="mini-symbol">△<small>수학 3학년</small></span>
-                <span class="mini-title">자료 이름이 들어갑니다.</span>
-                <span class="mini-student">학교<br>___ 반 ___ 번<br>이름:</span>
-              </span>
-            </button>
-
-            <button class="template-card" type="button" role="radio" aria-checked="false"
-              data-template="cyan" data-name="블루 리본형">
-              <span class="radio-dot"></span>
-              <span class="mini-header mini-cyan">
-                <span class="mini-symbol">◇<small>수학 3학년</small></span>
-                <span class="mini-title">자료 이름이 들어갑니다.</span>
-                <span class="mini-student">학교<br>___ 반 ___ 번<br>이름:</span>
-              </span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="solution-config-wrap">
+      <div class="command-actions">
+        <div class="solution-config-wrap">
         <button class="solution-config-trigger" type="button" aria-expanded="false">
           <span class="solution-config-copy">
             <small>해설지 구성</small>
@@ -121,9 +50,6 @@
           </div>
         </div>
       </div>
-
-      <div class="command-actions">
-
 
         <div class="column-control" aria-label="단 설정">
           <button type="button" data-column="1">1단</button>
@@ -157,7 +83,7 @@
           </div>
         </div>
 
-          <button class="outline-button inquiry-open" type="button">
+        <button class="outline-button inquiry-open" type="button">
           <span class="question-icon" aria-hidden="true">?</span>
           문의
         </button>
@@ -175,7 +101,6 @@
               </svg>
             </button>
             <span id="viewer-title">문제지_수학_3학년_2단</span>
-            <span class="template-status" id="template-status">기본 방패형</span>
           </div>
 
           <div class="viewer-controls">
@@ -199,7 +124,7 @@
         </div>
 
         <div class="viewer-stage" id="viewer-stage">
-          <article class="paper-frame template-shield columns-2" id="paper-frame">
+          <article class="paper-frame fixed-header-design columns-2" id="paper-frame">
             <header class="sheet-header">
               <div class="header-symbol">
                 <span class="symbol-icon">수학</span>
